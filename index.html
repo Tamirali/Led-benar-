@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>तामीर अली LED प्रो - 7 रंग + सेलिब्रेशन</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+            background: #0b0b0b;
+            color: #fff;
+            text-align: center;
+            padding: 15px 12px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+        }
+
+        h3 {
+            color: #ff6e2b;
+            font-size: 22px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #ff6e2b66;
+            margin-bottom: 14px;
+            border-bottom: 2px dashed #ff6e2b;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* ===== LED स्क्रीन ===== */
+        .led-screen {
+            background: #0a0a0a;
+            border: 4px solid #2a2a2a;
+            height: 200px;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            border-radius: 18px;
+            box-shadow: 0 0 30px #ff5722, inset 0 0 20px #222;
+            margin-bottom: 22px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        #scrollWrapper {
+            display: inline-block;
+            white-space: nowrap;
+            position: absolute;
+            animation: moveRightToLeft 12s linear infinite;
+            will-change: transform;
+            z-index: 2;
+        }
+
+        #mainText {
+            font-size: 48px;
+            font-weight: 700;
+            padding: 0 40px;
+            color: #ff5722;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            letter-spacing: 2px;
+            transition: color 0.15s;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            #mainText {
+                font-size: 28px;
+                padding: 0 20px;
+            }
+            .led-screen {
+                height: 150px;
+            }
+        }
+
+        /* ===== बैनर का पता ===== */
+        .address-tag {
+            position: absolute;
+            bottom: 6px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(3px);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #ffb085;
+            border: 1px solid #ff6e2b55;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            box-shadow: 0 0 12px #ff572244;
+            pointer-events: none;
+            z-index: 5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* ===== एनिमेशन ===== */
+        @keyframes moveRightToLeft {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .zoom-effect {
+            animation: zoomer 1.2s ease-in-out infinite alternate;
+        }
+        @keyframes zoomer {
+            0% {
+                transform: scale(0.7);
+                text-shadow: 0 0 20px currentColor;
+            }
+            100% {
+                transform: scale(1.25);
+                text-shadow: 0 0 50px currentColor, 0 0 80px currentColor;
+            }
+        }
+
+        .wave-effect {
+            animation: waver 0.9s ease-in-out infinite alternate;
+        }
+        @keyframes waver {
+            0% {
+                transform: translateY(-25px) rotate(-2deg);
+            }
+            100% {
+                transform: translateY(25px) rotate(2deg);
+            }
+        }
+
+        .glow-pulse {
+            animation: pulseGlow 1.4s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% {
+                filter: brightness(0.9) drop-shadow(0 0 15px currentColor);
+            }
+            100% {
+                filter: brightness(1.6) drop-shadow(0 0 45px currentColor);
+            }
+        }
+
+        .rainbow-effect {
+            animation: rainbow7 2.6s linear infinite !important;
+        }
+        @keyframes rainbow7 {
+            0% { color: #8B00FF; }
+            14% { color: #4B0082; }
+            28% { color: #0000FF; }
+            42% { color: #00FF00; }
+            57% { color: #FFFF00; }
+            71% { color: #FF7F00; }
+            85% { color: #FF0000; }
+            100% { color: #8B00FF; }
+        }
+
+        /* ===== तेल (ऑयल) इफेक्ट ===== */
+        .oil-effect {
+            animation: oilSlick 3s ease-in-out infinite alternate;
+        }
+        @keyframes oilSlick {
+            0% { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff, 0 0 90px #ff00ff; }
+            50% { text-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff, 0 0 120px #ffff00; }
+            100% { text-shadow: 0 0 30px #ffff00, 0 0 60px #ff00ff, 0 0 90px #00ffff; }
+        }
+
+        /* ===== सेलिब्रेशन इफेक्ट्स (लगातार चलने वाले) ===== */
+        .celebration-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        /* पटाखे - टेक्स्ट के आसपास */
+        .firecracker {
+            position: absolute;
+            font-size: 22px;
+            animation: firecrackerBurst 1.8s ease-out forwards;
+            z-index: 12;
+        }
+        @keyframes firecrackerBurst {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.8) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* दूल्हा-दुल्हन सिंबल */
+        .wedding-symbol {
+            position: absolute;
+            font-size: 30px;
+            animation: weddingFloat 3s ease-in-out infinite;
+            z-index: 11;
+            filter: drop-shadow(0 0 15px #ff6b6b);
+        }
+        @keyframes weddingFloat {
+            0% {
+                transform: translateY(0px) scale(1) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.3) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0px) scale(1) rotate(0deg);
+            }
+        }
+
+        /* फुलझड़ी */
+        .sparkle-effect {
+            position: absolute;
+            font-size: 18px;
+            animation: sparkleTwinkle 1.2s ease-in-out infinite alternate;
+            z-index: 9;
+        }
+        @keyframes sparkleTwinkle {
+            0% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* गिफ्ट */
+        .gift-box {
+            position: absolute;
+            font-size: 28px;
+            animation: giftBounce 2s ease-in-out infinite;
+            z-index: 13;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+        @keyframes giftBounce {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-20px) rotate(-5deg) scale(1.1);
+            }
+            75% {
+                transform: translateY(-10px) rotate(5deg) scale(1.05);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+        }
+
+        /* लगातार पटाखे छूटने के लिए */
+        .continuous-fire {
+            position: absolute;
+            font-size: 20px;
+            animation: continuousBurst 2.5s ease-in-out infinite;
+            z-index: 14;
+        }
+        @keyframes continuousBurst {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-40px) scale(1.4) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) scale(0.8) rotate(360deg);
+                opacity: 0.7;
+            }
+        }
+
+        /* ===== कंट्रोल पैनल ===== */
+        .panel {
+            background: #141414;
+            padding: 22px 20px;
+            border-radius: 24px;
+            border: 1px solid #2c2c2c;
+            max-width: 750px;
+            width: 100%;
+            text-align: left;
+            box-shadow: 0 8px 30px rgba(255, 87, 34, 0.15);
+            backdrop-filter: blur(4px);
+            margin-top: 6px;
+        }
+
+        .label-text {
+            font-size: 14px;
+            color: #ff6e2b;
+            font-weight: 600;
+            margin: 16px 0 6px 0;
+            display: block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            border: 1px solid #2e2e2e;
+            background: #1f1f1f;
+            color: #f0f0f0;
+            font-size: 16px;
+            transition: 0.2s;
+            outline: none;
+            font-weight: 500;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #ff6e2b;
+            box-shadow: 0 0 0 3px #ff572244;
+            background: #262626;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 8px 0 10px 0;
+        }
+
+        .c-btn {
+            height: 48px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 6px #00000099;
+            font-size: 14px;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 0 #00000055;
+            letter-spacing: 0.5px;
+        }
+
+        .c-btn:hover {
+            transform: scale(0.96);
+            filter: brightness(1.2);
+        }
+        .c-btn:active {
+            transform: scale(0.92);
+            box-shadow: 0 1px 0 #000;
+        }
+
+        .rainbow-btn {
+            grid-column: span 4;
+            background: linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet);
+            height: 52px;
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 6px;
+            box-shadow: 0 0 20px #ffa50077;
+            transition: 0.2s;
+            text-shadow: 0 2px 8px #000;
+        }
+
+        .rainbow-btn:hover {
+            transform: scale(0.97);
+            filter: brightness(1.1);
+        }
+
+        .celebration-btn {
+            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 12px;
+            box-shadow: 0 6px 0 #992b00, 0 8px 25px #ff572266;
+            transition: 0.08s linear;
+            letter-spacing: 1px;
+        }
+
+        .celebration-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #992b00;
+        }
+
+        .update-btn {
+            background: linear-gradient(145deg, #ff5722, #e64a19);
+            color: #fff;
+            border: none;
+            padding: 18px 12px;
+            width: 100%;
+            border-radius: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 18px;
+            box-shadow: 0 8px 0 #992b00, 0 8px 25px #ff572266;
+            transition: 0.08s linear;
+            letter-spacing: 2px;
+        }
+
+        .update-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #992b00;
+        }
+
+        .update-btn:hover {
+            background: #ff6a2e;
+            box-shadow: 0 8px 0 #992b00, 0 12px 35px #ff572288;
+        }
+
+        .footer-note {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #555;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #222;
+            padding-top: 18px;
+            width: 100%;
+            max-width: 750px;
+        }
+        .footer-note span {
+            color: #ff6e2b;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>🚩 तामीर अली · LED कंट्रोल प्रो</h3>
+
+    <!-- ===== LED बोर्ड ===== -->
+    <div class="led-screen" id="board">
+        <div id="scrollWrapper">
+            <div id="mainText">✨ स्वागत है ✨</div>
+        </div>
+
+        <div class="address-tag">
+            📍 तामीर अली · गाँव जसौली शेख पट्टी · पोस्ट सिवान · बिहार · पिन 841241
+        </div>
+
+        <!-- सेलिब्रेशन कंटेनर -->
+        <div class="celebration-container" id="celebrationContainer"></div>
+    </div>
+
+    <!-- ===== कंट्रोल पैनल ===== -->
+    <div class="panel">
+
+        <span class="label-text">✏️ बैनर टेक्स्ट</span>
+        <input type="text" id="textInp" placeholder="जैसे: तामीर अली का LED बोर्ड" oninput="syncText()" />
+
+        <span class="label-text">🎨 7 रंग (क्लिक करें)</span>
+        <div class="color-grid">
+            <button class="c-btn" style="background:#FF0000;" onclick="applyColor('#FF0000')">लाल</button>
+            <button class="c-btn" style="background:#00FF00; color:#000;" onclick="applyColor('#00FF00')">हरा</button>
+            <button class="c-btn" style="background:#0000FF;" onclick="applyColor('#0000FF')">नीला</button>
+            <button class="c-btn" style="background:#FFFF00; color:#000;" onclick="applyColor('#FFFF00')">पीला</button>
+            <button class="c-btn" style="background:#FF7F00;" onclick="applyColor('#FF7F00')">नारंगी</button>
+            <button class="c-btn" style="background:#8B00FF;" onclick="applyColor('#8B00FF')">बैंगनी</button>
+            <button class="c-btn" style="background:#00FFFF; color:#000;" onclick="applyColor('#00FFFF')">आसमानी</button>
+            <button class="c-btn" style="background:#FFFFFF; color:#000;" onclick="applyColor('#FFFFFF')">सफ़ेद</button>
+
+            <button class="rainbow-btn" onclick="applyRainbow()">🌈 7-कलर जादू (रेनबो)</button>
+        </div>
+
+        <span class="label-text">🌀 एनिमेशन इफेक्ट</span>
+        <select id="effSel">
+            <option value="none">सिर्फ स्क्रॉल (Plain)</option>
+            <option value="zoom-effect">🔍 ज़ूम (Zoom)</option>
+            <option value="wave-effect">🌊 लहर (Wave)</option>
+            <option value="glow-pulse">✨ ग्लो पल्स (Glow)</option>
+            <option value="oil-effect">🛢️ तेल (ऑयल) इफेक्ट</option>
+        </select>
+
+        <span class="label-text">⚡ रफ्तार (Speed)</span>
+        <select id="spdSel">
+            <option value="18s">🐢 धीमी (Slow)</option>
+            <option value="10s" selected>▶️ सामान्य (Normal)</option>
+            <option value="5s">🚀 तेज़ (Fast)</option>
+            <option value="3s">⚡ सुपरफास्ट</option>
+        </select>
+
+        <!-- सेलिब्रेशन बटन -->
+        <button class="celebration-btn" onclick="startCelebration()">🎉 सेलिब्रेशन शुरू करें (शादी/बर्थडे)</button>
+
+        <button class="update-btn" onclick="refreshBanner()">🔁 बैनर अपडेट करें</button>
+    </div>
+
+    <div class="footer-note">
+        <span>✦</span> तामीर अली · गाँव जसौली शेख पट्टी · सिवान · बिहार · पिन 841241 <span>✦</span>
+    </div>
+
+    <script>
+        // ----- DOM Ref -----
+        const mainTextEl = document.getElementById('mainText');
+        const textInput = document.getElementById('textInp');
+        const boardEl = document.getElementById('board');
+        const wrapper = document.getElementById('scrollWrapper');
+        const effSelect = document.getElementById('effSel');
+        const spdSelect = document.getElementById('spdSel');
+        const celebrationContainer = document.getElementById('celebrationContainer');
+
+        // ----- सिंक टेक्स्ट -----
+        function syncText() {
+            const val = textInput.value.trim();
+            mainTextEl.innerText = val || 'तामीर अली';
+        }
+
+        // ----- रंग लागू करें -----
+        function applyColor(clr) {
+            mainTextEl.classList.remove('rainbow-effect', 'oil-effect');
+            mainTextEl.style.color = clr;
+            boardEl.style.boxShadow = `0 0 40px ${clr}, inset 0 0 25px #222`;
+        }
+
+        // ----- रेनबो मोड -----
+        function applyRainbow() {
+            mainTextEl.classList.remove('oil-effect');
+            mainTextEl.classList.add('rainbow-effect');
+            boardEl.style.boxShadow = `0 0 45px #00ffff, 0 0 90px #ff00ff55, inset 0 0 30px #222`;
+        }
+
+        // ----- पूरा बैनर रिफ्रेश -----
+        function refreshBanner() {
+            const speed = spdSelect.value;
+            const effect = effSelect.value;
+
+            wrapper.style.animation = 'none';
+            mainTextEl.classList.remove('zoom-effect', 'wave-effect', 'glow-pulse', 'oil-effect');
+
+            if (effect !== 'none') {
+                mainTextEl.classList.add(effect);
+            }
+
+            setTimeout(() => {
+                wrapper.style.animation = `moveRightToLeft ${speed} linear infinite`;
+            }, 30);
+
+            boardEl.style.transition = 'box-shadow 0.2s';
+        }
+
+        // ===== सेलिब्रेशन इफेक्ट्स (लगातार चलने वाले) =====
+        let celebrationInterval = null;
+        let isCelebrationRunning = false;
+
+        function startCelebration() {
+            // अगर पहले से चल रहा है तो रोकें
+            if (isCelebrationRunning) {
+                stopCelebration();
+                return;
+            }
+
+            isCelebrationRunning = true;
+            document.querySelector('.celebration-btn').textContent = '⏹️ सेलिब्रेशन रोकें';
+
+            // पुराने इफेक्ट्स हटाएं
+            celebrationContainer.innerHTML = '';
+
+            // 1. लगातार पटाखे (टेक्स्ट के आसपास)
+            function createContinuousFire() {
+                if (!isCelebrationRunning) return;
+                
+                const fire = document.createElement('div');
+                fire.className = 'continuous-fire';
+                const emojis = ['🧨', '🎆', '🎇', '💥', '✨'];
+                fire.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                // टेक्स्ट के आसपास रैंडम पोजीशन
+                const x = Math.random() * 80 + 10;
+                const y = Math.random() * 70 + 10;
+                fire.style.left = x + '%';
+                fire.style.top = y + '%';
+                fire.style.fontSize = (Math.random() * 15 + 18) + 'px';
+                
+                celebrationContainer.appendChild(fire);
+                setTimeout(() => fire.remove(), 2500);
+            }
+
+            // 2. दूल्हा-दुल्हन सिंबल
+            function createWeddingSymbol() {
+                if (!isCelebrationRunning) return;
+                
+                const symbol = document.createElement('div');
+                symbol.className = 'wedding-symbol';
+                const symbols = ['👰', '🤵', '💑', '👩‍❤️‍👨', '💍', '🌸'];
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                symbol.style.left = Math.random() * 80 + 10 + '%';
+                symbol.style.top = Math.random() * 60 + 10 + '%';
+                symbol.style.fontSize = (Math.random() * 15 + 25) + 'px';
+                
+                celebrationContainer.appendChild(symbol);
+                setTimeout(() => symbol.remove(), 3000);
+            }
+
+            // 3. फुलझड़ी
+            function createSparkle() {
+                if (!isCelebrationRunning) return;
+                
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-effect';
+                const emojis = ['✨', '⭐', '🌟', '💫', '⚡'];
+                sparkle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                sparkle.style.left = Math.random() * 85 + 5 + '%';
+                sparkle.style.top = Math.random() * 70 + 10 + '%';
+                sparkle.style.fontSize = (Math.random() * 12 + 15) + 'px';
+                
+                celebrationContainer.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1200);
+            }
+
+            // 4. गिफ्ट
+            function createGift() {
+                if (!isCelebrationRunning) return;
+                
+                const gift = document.createElement('div');
+                gift.className = 'gift-box';
+                const emojis = ['🎁', '🎀', '🎂', '🧁'];
+                gift.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                gift.style.left = Math.random() * 80 + 10 + '%';
+                gift.style.top = Math.random() * 60 + 10 + '%';
+                gift.style.fontSize = (Math.random() * 15 + 22) + 'px';
+                
+                celebrationContainer.appendChild(gift);
+                setTimeout(() => gift.remove(), 2500);
+            }
+
+            // 5. पटाखे (बर्स्ट इफेक्ट)
+            function createFirecracker() {
+                if (!isCelebrationRunning) return;
+                
+                const cracker = document.createElement('div');
+                cracker.className = 'firecracker';
+                const emojis = ['🧨', '🎆', '💥', '🎇', '🔥'];
+                cracker.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                cracker.style.left = Math.random() * 85 + 5 + '%';
+                cracker.style.top = Math.random() * 70 + 10 + '%';
+                cracker.style.fontSize = (Math.random() * 15 + 18) + 'px';
+                
+                celebrationContainer.appendChild(cracker);
+                setTimeout(() => cracker.remove(), 1800);
+            }
+
+            // सभी इफेक्ट्स को अलग-अलग इंटरवल पर चलाएं
+            const interval1 = setInterval(createContinuousFire, 300);
+            const interval2 = setInterval(createWeddingSymbol, 800);
+            const interval3 = setInterval(createSparkle, 200);
+            const interval4 = setInterval(createGift, 600);
+            const interval5 = setInterval(createFirecracker, 400);
+
+            // सभी इंटरवल्स को स्टोर करें ताकि बंद कर सकें
+            celebrationInterval = [interval1, interval2, interval3, interval4, interval5];
+
+            // बोर्ड को सेलिब्रेशन मोड में दिखाएं
+            boardEl.style.boxShadow = '0 0 60px #ff00ff, 0 0 120px #00ffff, 0 0 180px #ff00ff';
+        }
+
+        function stopCelebration() {
+            isCelebrationRunning = false;
+            document.querySelector('.celebration-btn').textContent = '🎉 सेलिब्रेशन शुरू करें (शादी/बर्थडे)';
+            
+            if (celebrationInterval) {
+                celebrationInterval.forEach(interval => clearInterval(interval));
+                celebrationInterval = null;
+            }
+            
+            celebrationContainer.innerHTML = '';
+            boardEl.style.boxShadow = '0 0 30px #ff5722, inset 0 0 20px #222';
+        }
+
+        // ----- डिफॉल्ट -----
+        window.addEventListener('load', function() {
+            mainTextEl.innerText = '✨ तामीर अली · LED बोर्ड ✨';
+            textInput.placeholder = 'तामीर अली · जसौली शेख पट्टी · सिवान · बिहार';
+        });
+
+        textInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                refreshBanner();
+            }
+        });
+    </script>
+
+</body>
+</html>
